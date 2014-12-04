@@ -1,0 +1,35 @@
+// Felipe Dienstmann Musse (dienstmf)
+// João Pedro Meireles (mullermj)
+// Matheus Schuh (schuhm)
+
+/* CONSTANTS DEFINITION */
+
+// characteristics of the robot
+
+#define L 13.25 // cm
+#define R 2.675 // cm
+
+// desired behavior of the robot
+
+#define theta_c 0
+#define y_c 20 // cm
+#define V 10 // cm/s
+
+// feedback matrix
+
+#define K_y -1 // yet to define
+#define K_theta -1 // yet to define
+
+/* GLOBAL VARIABLES */
+
+// measures
+float y_measured;
+float theta_measured;
+
+// robot state and behavior
+float theta;
+float y;
+float w;
+float w_right;
+float w_left;
+
