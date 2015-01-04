@@ -11,9 +11,9 @@
 
 // desired behavior of the robot
 
-#define THETA_C 0
-#define Y_C 30 // cm
-#define V 20 // cm/s
+#define THETA_REF 0
+#define Y_REF 30 // cm
+#define V 15 // cm/s
 
 // feedback matrix
 
@@ -29,6 +29,7 @@
 // limits
 
 #define W_MAX 100
+#define WAIT_TIME 10 // ms
 
 /* GLOBAL VARIABLES */
 
@@ -61,9 +62,9 @@ sub measure() {
 
 sub calculate() {
 
-  y = y_measured - Y_C;
-  theta = theta_measured - THETA_C;
-  w = -K_Y * y -K_THETA * theta;
+  y = y_measured - Y_REF;
+  theta = theta_measured - THETA_REF;
+  w = (-K_Y * y) + (-K_THETA * theta);
   w_right = (4 * V + L * w) / 4 * R;
   w_left = (4 * V - L * w) / 4 * R; 
 }
@@ -97,7 +98,6 @@ task main() {
   measure();
   output();
   calculate();
-  Wait(50);
-  
+  Wait(WAIT_TIME);
   }
 }
